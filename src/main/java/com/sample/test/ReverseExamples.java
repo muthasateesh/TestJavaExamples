@@ -1,5 +1,10 @@
 package com.sample.test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ReverseExamples {
 
 	public static void main(String[] args) {
@@ -17,6 +22,18 @@ public class ReverseExamples {
         String reversedWords = reverseEachWord(str);
         System.out.println("Reversed each word: " + reversedWords);
 
+        int[] nums = {1, 2, 3, 4, 5};
+        // Convert array to a list
+        List<Integer> numList = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        
+        // Reverse the list
+        Collections.reverse(numList);
+
+        // Convert the list back to an array
+        int[] reversedNums = numList.stream().mapToInt(Integer::intValue).toArray();
+
+        // Print the reversed array
+        System.out.println(Arrays.toString(reversedNums));
 	}
 	//	 Reverse the entire string
 	public static String reverseString(String str) {
