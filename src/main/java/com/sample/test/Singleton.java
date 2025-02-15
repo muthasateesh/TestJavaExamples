@@ -5,14 +5,18 @@ import java.io.Serializable;
 public class Singleton implements Serializable {
 	// Added serialVersionUID: This is recommended for Serializable classes to ensure version compatibility during deserialization.
     private static final long serialVersionUID = 1L; // Added for serialization
-    private static Singleton instance;
+    private static volatile Singleton instance; // volatile can be added to the singleton instance to ensure proper visibility across threads
     
     private Singleton() {}
     
-    public static synchronized Singleton getInstance() {
-        if (instance == null) {
-            instance = new Singleton();
-        }
+    public static Singleton getInstance() {
+    	  if (instance == null) {
+              synchronized (Singleton.class) {
+                  if (instance == null) {
+                      instance = new Singleton();
+                  }
+              }
+          }
         return instance;
     }
     
