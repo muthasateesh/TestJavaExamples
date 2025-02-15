@@ -9,8 +9,12 @@ public class Employee {
 	private double salary;
 	private String gender;
 	private String department;
-	public Employee(String empId, String empName, String city, int age, double salary, String gender,
-			String department) {
+	private String rating;
+	
+	
+	
+	public Employee(String empId, String empName, String city, int age, double salary, String gender, String department,
+			String rating) {
 		super();
 		this.empId = empId;
 		this.empName = empName;
@@ -19,6 +23,7 @@ public class Employee {
 		this.salary = salary;
 		this.gender = gender;
 		this.department = department;
+		this.rating = rating;
 	}
 	public String getEmpId() {
 		return empId;
@@ -62,10 +67,11 @@ public class Employee {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	@Override
-	public String toString() {
-		return "Employee [empId=" + empId + ", empName=" + empName + ", city=" + city + ", age=" + age + ", salary="
-				+ salary + ", gender=" + gender + ", department=" + department + "]";
+	public String getRating() {
+		return rating;
+	}
+	public void setRating(String rating) {
+		this.rating = rating;
 	}
 	@Override
 	public int hashCode() {
@@ -77,6 +83,7 @@ public class Employee {
 		result = prime * result + ((empId == null) ? 0 : empId.hashCode());
 		result = prime * result + ((empName == null) ? 0 : empName.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(salary);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -118,10 +125,21 @@ public class Employee {
 				return false;
 		} else if (!gender.equals(other.gender))
 			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
+			return false;
 		if (Double.doubleToLongBits(salary) != Double.doubleToLongBits(other.salary))
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Employee [empId=" + empId + ", empName=" + empName + ", city=" + city + ", age=" + age + ", salary="
+				+ salary + ", gender=" + gender + ", department=" + department + ", rating=" + rating + "]";
+	}
+	
 	
 	
 
