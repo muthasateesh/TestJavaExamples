@@ -25,6 +25,8 @@ public class FindDuplicatesAndNonDuplicates {
 		List<Integer> numList=Arrays.asList(5,6,7,3,4,5,6,8,2,3,1,2,4,9,8);
 		Map<Integer,Long> numMap=numList.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
 		System.out.println(numMap);
+		List<Integer> DuplicateList=numMap.entrySet().stream().filter(k->k.getValue()>1).map(k->k.getKey()).collect(Collectors.toList());
+		DuplicateList.forEach(System.out::println);
 		
 		////Duplicate Words from given List
 		List<String> wordList=Arrays.asList("Amanda","Rob","Sunny","Amanda","Rob","Amanda");

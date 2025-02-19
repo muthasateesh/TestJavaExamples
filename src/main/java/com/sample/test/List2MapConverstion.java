@@ -9,7 +9,7 @@ public class List2MapConverstion {
 
 	public static void main(String[] args) {
 		List<Employee> empList=EmployeeData.createEmployeeList();
-// Convert List of Objects to Map and handle Duplicate keys (Duplicate keys should be removed)
+		// Convert List of Objects to Map and handle Duplicate keys (Duplicate keys should be removed)
 
 		Map<String,Employee>map=empList.stream().collect(Collectors.toMap(Employee::getEmpName, e->e,(oldValue,newValue)->newValue));
 		
