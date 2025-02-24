@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class ReverseExamples {
 
@@ -21,7 +22,12 @@ public class ReverseExamples {
         // Reverse each word in the string
         String reversedWords = reverseEachWord(str);
         System.out.println("Reversed each word: " + reversedWords);
-
+        // or
+        List<String> reversedWordsBySpliting =  Arrays.asList(str.split(" ")).stream().map(word->new StringBuilder(word).reverse().toString()).collect(Collectors.toList());
+        String result = String.join(" ", reversedWordsBySpliting);
+        System.out.println("reversedWordsBySpliting "+result); // Output: iH olleH woH era uoY
+        
+        
         int[] nums = {1, 2, 3, 4, 5};
         // Convert array to a list
         List<Integer> numList = Arrays.stream(nums).boxed().collect(Collectors.toList());
@@ -34,6 +40,20 @@ public class ReverseExamples {
 
         // Print the reversed array
         System.out.println(Arrays.toString(reversedNums));
+        
+        // or
+        IntStream.range(0,nums.length).map(i->nums[nums.length-1-i]).forEach(System.out::print);
+        
+        String [] strArry= {"Hello","Java"};
+        // reverse each word
+       String[] reverseEachStrArray= Arrays.stream(strArry).map(m->new StringBuilder(m).reverse().toString()).toArray(String[]::new);
+       Arrays.stream(reverseEachStrArray).forEach(System.out::print);
+       // reverse Array
+       String[] reverseStrArray= Arrays.stream(strArry).collect(Collectors.collectingAndThen(Collectors.toList(), list->{
+    	   Collections.reverse(list);
+    	   return list.toArray(new String[0]);
+       }));
+       Arrays.stream(reverseStrArray).forEach(System.out::println);
 	}
 	//	 Reverse the entire string
 	public static String reverseString(String str) {
